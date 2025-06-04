@@ -1,0 +1,69 @@
+---
+title: "ETC5250 Kaggle Challenge— **XGBoost** Mortality Prediction"
+author: |
+  Vaishnavi Amuda  
+  Anh Hoang Nam Phan  
+  Nghia Cao  
+  Arun Krishnasamy
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    incremental: true
+---
+
+## Data &Pre‑processing {.stretch}
+
+* **20885 ICU stays** from MIMIC‑III after exclusions (neonates, transplants, missing outcomes).
+* Outcome prevalence **≈11%** ⇒ class imbalance (1:8).
+* **206 predictors** across five groups: demographics, comorbidities, snapshot vitals, key labs, 50‑d ICD‑9 embeddings.
+* Recipe→ median impute • drop zero‑variance • lump rare • one‑hot • normalise.
+* **`scale_pos_weight =7.91`** boosted recall **0.40→0.62** & precision **0.17→0.23**.
+
+---
+
+### XGBoost Model
+
+::: {style="font-size: 80%;"}
+
+* 180‑point **grid search** (depth3‑12, eta0.01‑0.3, …) × 5‑fold CV.
+* **Best**: depth4 · eta0.0056 · gamma5.12 · subsample0.695 · colsample1.0 · **2000 trees** (early‑stopped).
+* CV ROC‑AUC **0.950±0.003**· Kaggle public **0.946**.
+
+:::
+  
+![](SHAP/shap_beeswarm.png)
+:::
+
+:::
+
+*ICD embeddings dominate → diagnostic clusters; vitals extremes flag acute derangement; Elixhauser &AGE capture chronic burden.*
+---
+
+## High‑risk: *Patient8979* (pred0.92)
+
+::: columns
+::: {.column width="60%"}
+![](SHAP/shap_high.png){width="100%"}
+:::
+::: {.column width="40%"}
+![](tables/case_high_table.png){width="200%"}
+:::
+:::
+
+`icd_emb_31`, Elixhauser+AGE, hypotension & hypoxia push odds ↑
+
+---
+
+### Low‑risk: *Patient13782* (pred0.07)
+
+::: columns
+::: {.column width="60%"}
+![](SHAP/shap_low.png){width="100%"}
+:::
+::: {.column width="40%"}
+![](tables/case_low_table.png){width="100%"}
+:::
+:::
+
+Young, Elixhauser≈0; normal vitals dominate → survival likely.

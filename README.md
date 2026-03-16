@@ -43,6 +43,7 @@ I trained and compared several models:
 
 ## Results and Interpretability
 I evaluated the models using 5 fold cross validation and the ROC AUC metric. The stacked ensemble model is the best performer. It achieves a final ROC AUC of around 0.95.
+[Leaderboard link](https://www.kaggle.com/competitions/predicting-the-probability-of-death-in-an-icu/leaderboard)
 
 To explain how the XGBoost model makes decisions, the code generates SHAP values. It creates waterfall and beeswarm plots to show feature importance.
 

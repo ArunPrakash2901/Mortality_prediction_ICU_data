@@ -1,7 +1,7 @@
 # MIMIC III Mortality Prediction
 
 ## Project Description
-This project predicts if a patient will die during their hospital stay. It uses data from the MIMIC III dataset. The project starts with simple models and moves to complex machine learning methods.
+This project predicts if a patient, with specifi conditions, admitted in an ICU, dies during their hospital stay. It uses data from the MIMIC III dataset. The project starts with simple models and moves to complex machine learning methods.
 
 ## Repository Structure
 Here is an overview of the main folders and files in this project:

@@ -19,7 +19,6 @@ This is a high-performance Machine Learning project developed for a Kaggle-style
 - `SHAP/`: Scripts and output visualizations for model interpretability.
 - `Submissions/`: Generated CSV files for Kaggle submissions.
 - `tables/`: Patient-level case study tables generated from SHAP values.
-- `nicepackage/`: A custom R package utilizing `Rcpp` for optimized matrix operations.
 - `Presentation.qmd`: Quarto-based presentation of results and methodology.
 
 ## Building and Running
